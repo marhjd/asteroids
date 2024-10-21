@@ -42,9 +42,13 @@ def main():
         dt = clock.tick(60) / 1000
 
         # check for collision
-        for a in asteroids:
-            if player.collides(a):
+        for asteroid in asteroids:
+            if player.collides(asteroid):
                 exit("Game over!")
+            for shot in shots:
+                if shot.collides(asteroid):
+                    asteroid.kill()
+                    shot.kill()
 
 
 if __name__ == "__main__":
